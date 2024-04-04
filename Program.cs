@@ -1,10 +1,18 @@
-﻿using Televisor;
+﻿using Proyecto1;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-class Program
+namespace Proyecto1_01
 {
-    static void Main(string[] args)
+    class Program
     {
-        var game = new Game();
-        game.Run();
+        static void Main(string[] args)
+        {
+            Game juego = new Game(800, 600, "Demo OpenTK");
+            juego.Run(60);
+        }
     }
 }
