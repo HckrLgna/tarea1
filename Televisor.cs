@@ -28,17 +28,20 @@ namespace Proyecto1_01
             this.dept = dept;
 
             origin_screen = punto;
-            //punto.acumular(new Punto(0, -15, 0));
-            origin_support = punto;
-           // punto.acumular(new Punto(0, -17, 0));
-            origin_base_screen = punto;
+
+            
 
             screen = new Cubo(origin_screen, width, height, dept);
-            support = new Cubo(new Punto(0, -15, 0), width-13, height-5, dept-3);
-            base_screen = new Cubo(new Punto(0, -17, 0), width-10, height-7, dept-3);
+             
+
+            support = new Cubo(new Punto(0, -10, 0), width-13, height-8, dept-2);
+            
+
+            base_screen = new Cubo(new Punto(0, -14, 0), width-10, height-8, dept-2);
         }
         public void draw()
         {
+            GL.Rotate(20, 1, 1, 0);
 
             screen.Dibujar();
             screen_window();

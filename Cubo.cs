@@ -28,7 +28,6 @@ namespace Proyecto1
 
         public void Dibujar()
         {
-            GL.Rotate(10, 1, 1, 0);
             //PrimitiveType primitiveType = PrimitiveType.LineLoop;
             PrimitiveType primitiveType = PrimitiveType.Quads;
             //GL.Rotate(0.9, 1, 1, 1);

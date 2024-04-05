@@ -17,6 +17,7 @@ namespace Proyecto1
        
         
         public Televisor televisor;
+        public Televisor televisor2;
         //-----------------------------------------------------------------------------------------------------------------
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title) { }
         //-----------------------------------------------------------------------------------------------------------------
@@ -28,6 +29,7 @@ namespace Proyecto1
         protected override void OnLoad(EventArgs e)
         {
             GL.ClearColor(Color4.Beige);
+            televisor2 = new Televisor(new Punto(-20,0,0),10,5,2.5f);
             televisor = new Televisor(new Punto(0,0,0),15, 10, 5);
             base.OnLoad(e);     
         }
@@ -46,8 +48,9 @@ namespace Proyecto1
             GL.Enable(EnableCap.DepthTest);
             GL.LoadIdentity();
             //-----------------------
+            //this.televisor2.draw();
             this.televisor.draw();
-             
+            
             //-----------------------
             Context.SwapBuffers();
             base.OnRenderFrame(e);
