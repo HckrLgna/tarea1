@@ -29,8 +29,8 @@ namespace Proyecto1
         protected override void OnLoad(EventArgs e)
         {
             GL.ClearColor(Color4.Beige);
-            televisor2 = new Televisor(new Punto(-20,0,0),10,5,2.5f);
-            televisor = new Televisor(new Punto(0,0,0),15, 10, 5);
+            televisor2 = new Televisor(new Punto(20,0,0),10,5,2.5f);
+            televisor = new Televisor(new Punto(-10,0,0),15, 10, 5);
             base.OnLoad(e);     
         }
         //-----------------------------------------------------------------------------------------------------------------
@@ -48,7 +48,9 @@ namespace Proyecto1
             GL.Enable(EnableCap.DepthTest);
             GL.LoadIdentity();
             //-----------------------
-            //this.televisor2.draw();
+            GL.Rotate(20, 1, 1, 0);
+
+            this.televisor2.draw();
             this.televisor.draw();
             
             //-----------------------

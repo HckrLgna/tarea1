@@ -27,26 +27,27 @@ namespace Proyecto1_01
             this.height = height;
             this.dept = dept;
 
-            origin_screen = punto;
+            this.origin_screen = punto;
+            this.origin_support = new Punto(punto.x,punto.y - (height), punto.z);
+            this.origin_base_screen = new Punto (punto.x, punto.y + (this.origin_support.y - (height/4)), punto.z);
 
-            
 
-            screen = new Cubo(origin_screen, width, height, dept);
+            this.screen = new Cubo(origin_screen, width, height, dept);
              
 
-            support = new Cubo(new Punto(0, -10, 0), width-13, height-8, dept-2);
+            this.support = new Cubo(origin_support, width/8, height/8, dept);
             
 
-            base_screen = new Cubo(new Punto(0, -14, 0), width-10, height-8, dept-2);
+            this.base_screen = new Cubo(origin_base_screen, width/4, height/6, dept);
         }
         public void draw()
         {
-            GL.Rotate(20, 1, 1, 0);
-
+            //GL.Rotate(20, 1, 1, 0);
+            //GL.Rotate(0.9, 1, 1, 1);
             screen.Dibujar();
             screen_window();
-            support.Dibujar();
-            base_screen.Dibujar();
+            this.support.Dibujar();
+            this.base_screen.Dibujar();
 
         }
         private void screen_window()
