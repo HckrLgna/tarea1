@@ -29,7 +29,7 @@ namespace Proyecto1
         protected override void OnLoad(EventArgs e)
         {
             GL.ClearColor(Color4.Beige);
-            televisor2 = new Televisor(new Punto(20,0,0),10,5,2.5f);
+            televisor2 = new Televisor(new Punto(20,0,0),8,5,2.5f);
             televisor = new Televisor(new Punto(-10,0,0),15, 10, 5);
             base.OnLoad(e);     
         }

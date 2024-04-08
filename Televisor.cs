@@ -42,12 +42,10 @@ namespace Proyecto1_01
         }
         public void draw()
         {
-            //GL.Rotate(20, 1, 1, 0);
-            //GL.Rotate(0.9, 1, 1, 1);
             screen.Dibujar();
             screen_window();
-            this.support.Dibujar();
-            this.base_screen.Dibujar();
+            support.Dibujar();
+            base_screen.Dibujar();
 
         }
         private void screen_window()

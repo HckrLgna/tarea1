@@ -45,7 +45,6 @@ namespace Proyecto1
         private void right(PrimitiveType primitiveType)
         {
             GL.Begin(primitiveType);
-            //GL.Color4(Color.Aqua);
             GL.Color3(1.0, 1.0, 0.0);//amarillo
             GL.Vertex3(origen.x + ancho, origen.y + alto, origen.z - profundidad);
             GL.Vertex3(origen.x + ancho, origen.y + alto, origen.z + profundidad);
