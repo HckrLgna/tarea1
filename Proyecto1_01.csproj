@@ -48,11 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cubo.cs" />
-    <Compile Include="Extras\Punto.cs" />
+    <Compile Include="Extras\Coordinate.cs" />
+    <Compile Include="Extras\Speaker.cs" />
+    <Compile Include="Extras\Televisor.cs" />
+    <Compile Include="Extras\Vase.cs" />
+    <Compile Include="Face.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Figure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Televisor.cs" />
+    <Compile Include="Stage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

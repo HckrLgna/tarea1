@@ -3,6 +3,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using Proyecto1_01;
+using Proyecto1_01.Extras;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,10 +17,12 @@ namespace Proyecto1
     {
        
         
-        public Televisor televisor;
-        public Televisor televisor2;
+       private Stage stage;
+
         //-----------------------------------------------------------------------------------------------------------------
-        public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title) { }
+        public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title) {
+            
+        }
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
@@ -28,10 +31,21 @@ namespace Proyecto1
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
             GL.ClearColor(Color4.Beige);
-            televisor2 = new Televisor(new Punto(20,0,0),8,5,2.5f);
-            televisor = new Televisor(new Punto(-10,0,0),15, 10, 5);
-            base.OnLoad(e);     
+
+
+            //televisor = new Figure(list_faces);
+            stage = new Stage();
+            Figure televisor = new Figure(new Coordinate(-10,10,0), Televisor.getFaces());
+            Figure speaker1 = new Figure(new Coordinate(), Speaker.getFaces());
+            Figure speaker2 = new Figure(new Coordinate(), Speaker.getFaces());
+            Figure vase = new Figure(new Coordinate(), Vase.getFaces());
+            stage.addFigure("televisor",televisor);
+            stage.addFigure("speaker1",speaker1);
+            stage.addFigure("speacker2",speaker2);
+            stage.addFigure("vase",vase);
+            
         }
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnUnload(EventArgs e)
@@ -49,9 +63,9 @@ namespace Proyecto1
             GL.LoadIdentity();
             //-----------------------
             GL.Rotate(20, 1, 1, 0);
-
-            this.televisor2.draw();
-            this.televisor.draw();
+            //GL.Rotate(0.9, 1, 1, 1);
+            stage.draw();
+            
             
             //-----------------------
             Context.SwapBuffers();

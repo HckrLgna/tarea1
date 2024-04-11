@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Proyecto1
 {
    
-    public class Punto
+    public class Coordinate
     {
         //atributos
         private float ejeX { get; set; }
@@ -21,17 +21,17 @@ namespace Proyecto1
        
 
         //contructor con parametros---------------------------------------------------------
-        public Punto(float x, float y, float z)
+        public Coordinate(float x, float y, float z)
         {
             this.ejeX = x;
             this.ejeY = y;
             this.ejeZ = z;
         }
         //-----------------------------------------------------------------------------------------------------------------
-        public Punto(): this(0, 0, 0) { }
+        public Coordinate(): this(0, 0, 0) { }
         //-----------------------------------------------------------------------------------------------------------------
         //Contructor copia
-        public Punto(Punto p)
+        public Coordinate(Coordinate p)
         {
             this.ejeX = p.ejeX;
             this.ejeY = p.ejeY;
@@ -39,7 +39,7 @@ namespace Proyecto1
         }
         //-----------------------------------------------------------------------------------------------------------------
         //Contructor con el mismo valor inicial 
-        public Punto(float valor)
+        public Coordinate(float valor)
         {
             this.ejeX = this.ejeY = this.ejeZ = valor;
         }
@@ -49,7 +49,7 @@ namespace Proyecto1
             return new Vector3(this.ejeX, this.ejeY, this.ejeZ); 
         }
         //-----------------------------------------------------------------------------------------------------------------
-        public void acumular(Punto p)
+        public void acumular(Coordinate p)
         {
             this.ejeX += p.x; 
             this.ejeY += p.y;
@@ -67,12 +67,13 @@ namespace Proyecto1
             this.ejeY *= y;
             this.ejeZ *= z;
         }
+
         public void setPunto(float valor)
         {
             this.ejeX = this.ejeY = this.ejeZ = valor;
         }
         //-----------------------------------------------------------------------------------------------------------------
-        public bool compareTo(Punto a)
+        public bool compareTo(Coordinate a)
         {
             return (this.ejeX == a.ejeX && this.ejeY == a.ejeY && this.ejeZ == a.ejeZ);
         }
