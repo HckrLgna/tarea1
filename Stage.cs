@@ -8,7 +8,7 @@ namespace Proyecto1_01
 {
     public class Stage
     {
-        private Dictionary<string, Figure> objects;
+        public Dictionary<string, Figure> objects;
         public Stage()
         {
             objects = new Dictionary<string, Figure>();
@@ -26,6 +26,18 @@ namespace Proyecto1_01
         }
         public void removeFigure(string name) { 
             objects.Remove(name);
+        }
+        public Figure getFigure(string name)
+        {
+            try
+            {
+                return objects[name];
+            }catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+            
         }
     }
 }

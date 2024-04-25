@@ -25,6 +25,12 @@ namespace Proyecto1_01
             this.color = color;
             
         }
+        public Face(Dictionary<string, Coordinate> list_coordinates, Coordinate center)
+        {
+            this.list_coordinates = list_coordinates;
+            this.center = center;
+        }
+
         public Face(Face face)
         {
             this.list_coordinates = face.list_coordinates;
