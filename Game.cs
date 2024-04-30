@@ -62,11 +62,9 @@ namespace Proyecto1
             GL.Enable(EnableCap.DepthTest);
             GL.LoadIdentity();
             //-----------------------
-            GL.Rotate(20, 1, 1, 0);
+            GL.Rotate(18, 1, 1, 0);
             //GL.Rotate(0.9, 1, 1, 1);
             stage.draw();
-            
-            
             //-----------------------
             Context.SwapBuffers();
             base.OnRenderFrame(e);
