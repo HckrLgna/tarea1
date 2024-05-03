@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 using Proyecto1;
@@ -13,30 +14,31 @@ namespace Proyecto1_01
     public class Face
     {
         public Dictionary<string, Coordinate> list_coordinates;
+        public Transformation Transformations;
         public Color color;
-        public Coordinate center {  get; set; }
+        public Coordinate center { get; set; }
         public Face()
         {
             this.list_coordinates = new Dictionary<string, Coordinate>();
             this.color = new Color();
+            this.Transformations = new Transformation();
         }
-        public Face(Dictionary<string, Coordinate> list_points, Color color) {
+        public Face(Dictionary<string, Coordinate> list_points, Color color, Coordinate center) {
             this.list_coordinates = list_points;
             this.color = color;
-            
+            this.center = center;
+            Transformations = new Transformation();
         }
         public Face(Dictionary<string, Coordinate> list_coordinates, Coordinate center)
         {
             this.list_coordinates = list_coordinates;
             this.center = center;
+            Transformations = new Transformation();
+
         }
 
-        public Face(Face face)
-        {
-            this.list_coordinates = face.list_coordinates;
-            this.color = face.color;
-        }
-        public void Draw(Coordinate center)
+       
+        public void Draw()
         {
                 
             PrimitiveType primitiveType = PrimitiveType.Quads;
@@ -45,10 +47,12 @@ namespace Proyecto1_01
             GL.Color3(color); //gray
             foreach (var item in list_coordinates)
             {
-                GL.Vertex3(item.Value.x +center.x  , item.Value.y + center.y , item.Value.z + center.z);
+                Coordinate vertexToRender = (item.Value) * Transformations.TransformationMatrix;
+                GL.Vertex3(vertexToRender);
             }
 
             GL.End();
+            GL.Flush();
         }
         public void setColor(Color color)
         {
@@ -69,26 +73,59 @@ namespace Proyecto1_01
         }
         public void Traslate(float x, float y,  float z)
         {
-            foreach (var item in list_coordinates.Values)
-            {
-                item.acumular(x, y, z);
-            }
+            Transformations.Traslation *= Matrix4.CreateTranslation(x, y, z);
         }
-        public void Rotate(float x, float y, float z)
+        public void Rotate( float angleX, float angleY, float angleZ)
         {
-                center.acumular(x, y, z);
+            angleX = MathHelper.DegreesToRadians(angleX);
+            angleY = MathHelper.DegreesToRadians(angleY);
+            angleZ = MathHelper.DegreesToRadians(angleZ);
+
+            Transformations.Rotation *= Matrix4.CreateRotationX(angleX) * Matrix4.CreateRotationY(angleY) *
+                        Matrix4.CreateRotationZ(angleZ);
+
+            foreach (var vertex in list_coordinates)
+                vertex.Value.Set(vertex.Value.Get() * Transformations.Rotation);
         }
         public void Escalate(float x, float y, float z)
         {
-            if (x <= 0) x = 1;
-            if (y <= 0) y = 1;
-            if (z <= 0) z = 1;
-            this.center.multiplicar(x,y,z);
-            foreach (var item in list_coordinates.Values)
-            {
-                item.multiplicar(x, y, z);
-            }
+            Transformations.Scaling *= Matrix4.CreateScale(x, y, z);
         }
+
+        public void SetRotation(float angleX, float angleY, float angleZ, bool self)
+        {
+            angleX = MathHelper.DegreesToRadians(angleX);
+            angleY = MathHelper.DegreesToRadians(angleY);
+            angleZ = MathHelper.DegreesToRadians(angleZ);
+
+            Transformations.Rotation = Matrix4.CreateRotationX(angleX) * Matrix4.CreateRotationY(angleY) *
+                       Matrix4.CreateRotationZ(angleZ);
+
+            Transformations.SetTransformation(self);
+        }
+        public void SetTraslation(float x, float y, float z)
+        {
+            // Transformations.Traslation = new Vertex(x, y, z);
+            Transformations.Traslation = Matrix4.CreateTranslation(x, y, z);
+            Transformations.SetTransformation();
+        }
+        public void SetTraslation(Coordinate position)
+        {
+            SetTraslation(position.X, position.Y, position.Z);
+            // Transformations.Traslation = position;
+        }
+
+        public void SetScale(float x, float y, float z)
+        {
+            Transformations.Scaling = Matrix4.CreateScale(x, y, z);
+            Transformations.SetScaleTransformation();
+        }
+        public void SetScale(Coordinate scale)
+        {
+            Transformations.Scaling = Matrix4.CreateScale(scale);
+            Transformations.SetTransformation();
+        }
+
     }
 
 }

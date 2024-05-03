@@ -7,79 +7,96 @@ using System.Threading.Tasks;
 
 namespace Proyecto1
 {
-   
+
     public class Coordinate
     {
-        //atributos
-        private float ejeX { get; set; }
-        private float ejeY { get; set; }
-        private float ejeZ { get; set; }
-        //properties
-         public float x { get { return ejeX; } set { ejeX = value; } }
-        public float y { get { return ejeY; } set { ejeY = value; } }
-        public float z { get { return ejeZ; } set { ejeZ = value; } }
-       
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Z { get; set; }
 
-        //contructor con parametros---------------------------------------------------------
+
         public Coordinate(float x, float y, float z)
         {
-            this.ejeX = x;
-            this.ejeY = y;
-            this.ejeZ = z;
-        }
-        //-----------------------------------------------------------------------------------------------------------------
-        public Coordinate(): this(0, 0, 0) { }
-        //-----------------------------------------------------------------------------------------------------------------
-        //Contructor copia
-        public Coordinate(Coordinate p)
-        {
-            this.ejeX = p.ejeX;
-            this.ejeY = p.ejeY;
-            this.ejeZ = p.ejeZ;
-        }
-        //-----------------------------------------------------------------------------------------------------------------
-        //Contructor con el mismo valor inicial 
-        public Coordinate(float valor)
-        {
-            this.ejeX = this.ejeY = this.ejeZ = valor;
-        }
-        //-----------------------------------------------------------------------------------------------------------------
-        public Vector3 ToVector3() 
-        { 
-            return new Vector3(this.ejeX, this.ejeY, this.ejeZ); 
-        }
-        //-----------------------------------------------------------------------------------------------------------------
-        public void acumular(Coordinate p)
-        {
-            this.ejeX += p.x; 
-            this.ejeY += p.y;
-            this.ejeZ += p.z;
-        }
-        public void acumular(float x, float y, float z)
-        {
-            this.ejeX += x;
-            this.ejeY += y;
-            this.ejeZ += z;
-        }
-        public void multiplicar(float x, float y, float z)
-        {
-            this.ejeX *= x;
-            this.ejeY *= y;
-            this.ejeZ *= z;
+            X = x;
+            Y = y;
+            Z = z;
+
         }
 
-        public void setPunto(float valor)
+        public Coordinate()
         {
-            this.ejeX = this.ejeY = this.ejeZ = valor;
+            X = 0f;
+            Y = 0f;
+            Z = 0f;
         }
-        //-----------------------------------------------------------------------------------------------------------------
-        public bool compareTo(Coordinate a)
-        {
-            return (this.ejeX == a.ejeX && this.ejeY == a.ejeY && this.ejeZ == a.ejeZ);
-        }
-        public override string ToString() => $"({ejeX}|{ejeY}|{ejeZ})";
-        
 
 
+        public override string ToString()
+        {
+            return "[" + X + "|" + Y + "|" + Z + "]";
+        }
+
+        public void Set(Coordinate newVertex)
+        {
+            X = newVertex.X;
+            Y = newVertex.Y;
+            Z = newVertex.Z;
+        }
+
+        public Coordinate Get()
+        {
+            return this;
+        }
+
+        public static Coordinate operator +(Coordinate a, Coordinate b)
+        {
+            return new Coordinate(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+        }
+
+        public static Coordinate operator -(Coordinate a, Coordinate b)
+        {
+            return new Coordinate(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+        }
+
+        public static Coordinate operator -(Coordinate a)
+        {
+            return new Coordinate(-a.X, -a.Y, -a.Z);
+        }
+
+        public static Coordinate operator *(Coordinate a, Matrix4 b)
+        {
+            return new Coordinate(
+                a.X * b.M11 + a.Y * b.M21 + a.Z * b.M31 + 1f * b.M41,
+                a.X * b.M12 + a.Y * b.M22 + a.Z * b.M32 + 1f * b.M42,
+                a.X * b.M13 + a.Y * b.M23 + a.Z * b.M33 + 1f * b.M43
+            );
+        }
+
+        public static Coordinate operator /(Coordinate a, float b)
+        {
+            return new Coordinate(a.X / b, a.Y / b, a.Z / b);
+        }
+
+        public static Coordinate operator *(Coordinate a, float b)
+        {
+            return new Coordinate(b * a.X, b * a.Y, b * a.Z);
+        }
+
+        public static readonly Coordinate Origin = new Coordinate();
+
+        public static bool operator ==(Coordinate a, Coordinate b) => (a.X == b.X && a.Y == b.Y && a.Z == b.Z);
+
+        public static bool operator !=(Coordinate a, Coordinate b) => !(a == b);
+
+
+        public static implicit operator Vector3(Coordinate convert)
+        {
+            return new Vector3(convert.X, convert.Y, convert.Z);
+        }
+
+        public static Coordinate Vector4ToVertex(Vector4 vector4)
+        {
+            return new Coordinate(vector4.X, vector4.Y, vector4.Z);
+        }
     }
 }

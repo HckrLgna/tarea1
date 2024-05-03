@@ -78,18 +78,18 @@ namespace Proyecto1_01.Extras
             woofer_big_list_points.Add("left-button", new Coordinate(-valorX, -valorY - distY, +valorZ));
 
 
-            list_faces_base.Add("back", new Face(back_list_points, Color.Black));
-            list_faces_base.Add("front", new Face(front_list_points, Color.DarkGray));
-            list_faces_base.Add("left", new Face(left_list_points, Color.Gray));
-            list_faces_base.Add("right", new Face(right_list_points, Color.Gray));
-            list_faces_base.Add("top", new Face(top_list_points, Color.Black));
-            list_faces_base.Add("bottom", new Face(bottom_list_points, Color.Black));
+            list_faces_base.Add("back", new Face(back_list_points, Color.Black, new Coordinate()));
+            list_faces_base.Add("front", new Face(front_list_points, Color.DarkGray, new Coordinate()));
+            list_faces_base.Add("left", new Face(left_list_points, Color.Gray, new Coordinate()));
+            list_faces_base.Add("right", new Face(right_list_points, Color.Gray, new Coordinate()));
+            list_faces_base.Add("top", new Face(top_list_points, Color.Black, new Coordinate()));
+            list_faces_base.Add("bottom", new Face(bottom_list_points, Color.Black, new Coordinate()));
             parts.Add("base", new Part(list_faces_base));
 
             Dictionary<string, Face> list_faces_woofer = new Dictionary<string, Face>();
 
-            list_faces_woofer.Add("woofer_small", new Face(woofer_list_points, Color.LightBlue));
-            list_faces_woofer.Add("woofer_big", new Face(woofer_big_list_points, Color.LightBlue));
+            list_faces_woofer.Add("woofer_small", new Face(woofer_list_points, Color.LightBlue, new Coordinate()));
+            list_faces_woofer.Add("woofer_big", new Face(woofer_big_list_points, Color.LightBlue, new Coordinate()));
             parts.Add("woofer", new Part(list_faces_woofer));
 
             return parts;

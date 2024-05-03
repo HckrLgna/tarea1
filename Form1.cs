@@ -92,11 +92,15 @@ namespace Proyecto1_01
             cmbxParts.Items.Clear();
             cmbxFaces.SelectedItem = null;
             cmbxFaces.Items.Clear();
-            foreach (var parts in juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetListParts())
+            if( cmbxObjets.SelectedItem.ToString() != "Escenario")
             {
-                cmbxParts.Items.Add(parts.Key);
-                
+                foreach (var parts in juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetListParts())
+                {
+                    cmbxParts.Items.Add(parts.Key);
+
+                }
             }
+             
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -116,8 +120,7 @@ namespace Proyecto1_01
         {
             cmbxFaces.SelectedItem = null;
             cmbxFaces.Items.Clear();
-            //cmbxParts.SelectedItem = null;
-            //cmbxParts.Items.Clear();
+            
 
             foreach (var faces in juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetPart(cmbxParts.SelectedItem.ToString()).GetListFaces())
             {
@@ -125,28 +128,101 @@ namespace Proyecto1_01
             }
         }
 
-        private void inptPosX_ValueChanged(object sender, EventArgs e)
+         
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            float posx = (float)inptPosX.Value;
-            float ejex = (this.trasladarx < posx) ? 1.0f : -1.0f;
-            if(cmbxObjets.SelectedIndex == -1)
-            {
-                juego.stage.Traslate(posx, 0, 0);
-            }
-            else if(cmbxFaces.SelectedIndex == -1)
-            {
-                juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetPart(cmbxParts.SelectedItem.ToString()).Traslate(posx, 0, 0);
-            }
-            else
-            {
-                if (cmbxParts.SelectedIndex != -1)
-                {
-                    juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetPart(cmbxParts.SelectedItem.ToString()).GetFace(cmbxFaces.SelectedItem.ToString()).Traslate(posx, 0, 0);
-                }
-                juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).Traslate(posx, 0, 0);
-
-            }
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void XSlider_Scroll(object sender, EventArgs e)
+        {
+            SliderHandler();
+        }
+        private void SliderHandler()
+        {
+            if (XSlider != null && YSlider != null && ZSlider != null)
+            {
+                string mode = (string)cmbxOperation.SelectedItem;
+                string objectString = (string)cmbxObjets.SelectedItem;
+                string partString = (string)cmbxParts.SelectedItem;
+                string faceString = (string)cmbxFaces.SelectedItem;
+
+                if (mode == "Rotate")
+                {
+                    if (objectString == "Escenario")
+                    {
+                        juego.stage.SetRotation((float)XSlider.Value, (float)YSlider.Value,
+                            (float)ZSlider.Value);
+                    }
+                    else
+                    {
+                        Figure objectToProcess = juego.stage.getFigure(objectString);
+                        if (partString == "Objeto")
+                        {
+                            objectToProcess.SetRotation((float)XSlider.Value, (float)YSlider.Value,
+                                (float)ZSlider.Value, true);
+                            return;
+                        }
+
+                        Part partToProcess = objectToProcess.GetPart(partString);
+                        partToProcess.SetRotation((float)XSlider.Value, (float)YSlider.Value,
+                            (float)ZSlider.Value, true);
+                    }
+
+                    return;
+                }
+
+                Coordinate coordinates = new Coordinate((float)XSlider.Value, (float)YSlider.Value,
+                    (float)ZSlider.Value);
+
+                if (mode == "Traslate")
+                {
+                    if (objectString == "Escenario")
+                    {
+                        juego.stage.SetTraslation(coordinates);
+                    }
+                    else
+                    {
+                        Figure objectToProcess = juego.stage.getFigure(objectString);
+                        if (partString == "Objeto")
+                        {
+                            objectToProcess.SetTraslation(coordinates);
+                            return;
+                        }
+
+                        Part partToProcess = objectToProcess.GetPart(partString);
+                        partToProcess.SetTraslation(coordinates);
+                    }
+
+                    return;
+                }
+
+                if (mode == "Escale")
+                {
+                    if (objectString == "Escenario")
+                    {
+                        juego.stage.SetScale(coordinates);
+                    }
+                    else
+                    {
+                        Figure objectToProcess = juego.stage.getFigure(objectString);
+                        if (partString == "Objeto")
+                        {
+                            objectToProcess.SetScale(coordinates);
+                            return;
+                        }
+
+                        Part partToProcess = objectToProcess.GetPart(partString);
+                        partToProcess.SetScale(coordinates);
+                    }
+                }
+            }
+        }
+
     }
 }

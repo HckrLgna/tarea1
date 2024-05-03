@@ -49,11 +49,11 @@ namespace Proyecto1_01.Extras
 
             
 
-            list_faces.Add("back", new Face(back_list_points, Color.Brown));
-            list_faces.Add("front", new Face(front_list_points, Color.Brown));
-            list_faces.Add("left", new Face(left_list_points, Color.Gray));
-            list_faces.Add("right", new Face(right_list_points, Color.Gray));
-            list_faces.Add("top", new Face(top_list_points, Color.DarkRed));
+            list_faces.Add("back", new Face(back_list_points, Color.Brown, new Coordinate()));
+            list_faces.Add("front", new Face(front_list_points, Color.Brown, new Coordinate()));
+            list_faces.Add("left", new Face(left_list_points, Color.Gray, new Coordinate()));
+            list_faces.Add("right", new Face(right_list_points, Color.Gray, new Coordinate()));
+            list_faces.Add("top", new Face(top_list_points, Color.DarkRed, new Coordinate()));
             list_parts.Add("main", new Part(list_faces));
             return list_parts;
         }

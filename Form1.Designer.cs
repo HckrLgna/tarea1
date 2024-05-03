@@ -39,32 +39,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbxParts = new System.Windows.Forms.ComboBox();
             this.cmbxFaces = new System.Windows.Forms.ComboBox();
-            this.Position = new System.Windows.Forms.Label();
-            this.inptPosX = new System.Windows.Forms.NumericUpDown();
-            this.inptPosY = new System.Windows.Forms.NumericUpDown();
-            this.inptPosZ = new System.Windows.Forms.NumericUpDown();
-            this.inptRotX = new System.Windows.Forms.NumericUpDown();
+            this.posx = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.inptRotY = new System.Windows.Forms.NumericUpDown();
-            this.inptRotZ = new System.Windows.Forms.NumericUpDown();
-            this.inptScalX = new System.Windows.Forms.NumericUpDown();
-            this.inptScalY = new System.Windows.Forms.NumericUpDown();
-            this.inptScalZ = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.inptPosX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptPosY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptPosZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptRotX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptRotY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptRotZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptScalX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptScalY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptScalZ)).BeginInit();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbxOperation = new System.Windows.Forms.ComboBox();
+            this.XSlider = new System.Windows.Forms.TrackBar();
+            this.YSlider = new System.Windows.Forms.TrackBar();
+            this.ZSlider = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.XSlider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YSlider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ZSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // button1
             // 
@@ -89,6 +80,8 @@
             // cmbxObjets
             // 
             this.cmbxObjets.FormattingEnabled = true;
+            this.cmbxObjets.Items.AddRange(new object[] {
+            "Escenario"});
             this.cmbxObjets.Location = new System.Drawing.Point(131, 46);
             this.cmbxObjets.Name = "cmbxObjets";
             this.cmbxObjets.Size = new System.Drawing.Size(137, 24);
@@ -150,121 +143,93 @@
             this.cmbxFaces.Size = new System.Drawing.Size(137, 24);
             this.cmbxFaces.TabIndex = 9;
             // 
-            // Position
+            // posx
             // 
-            this.Position.AutoSize = true;
-            this.Position.Location = new System.Drawing.Point(14, 201);
-            this.Position.Name = "Position";
-            this.Position.Size = new System.Drawing.Size(55, 16);
-            this.Position.TabIndex = 10;
-            this.Position.Text = "Position";
-            // 
-            // inptPosX
-            // 
-            this.inptPosX.DecimalPlaces = 2;
-            this.inptPosX.Location = new System.Drawing.Point(148, 197);
-            this.inptPosX.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.inptPosX.Name = "inptPosX";
-            this.inptPosX.Size = new System.Drawing.Size(120, 22);
-            this.inptPosX.TabIndex = 11;
-            this.inptPosX.ThousandsSeparator = true;
-            this.inptPosX.ValueChanged += new System.EventHandler(this.inptPosX_ValueChanged);
-            // 
-            // inptPosY
-            // 
-            this.inptPosY.Location = new System.Drawing.Point(148, 226);
-            this.inptPosY.Name = "inptPosY";
-            this.inptPosY.Size = new System.Drawing.Size(120, 22);
-            this.inptPosY.TabIndex = 12;
-            // 
-            // inptPosZ
-            // 
-            this.inptPosZ.Location = new System.Drawing.Point(148, 255);
-            this.inptPosZ.Name = "inptPosZ";
-            this.inptPosZ.Size = new System.Drawing.Size(120, 22);
-            this.inptPosZ.TabIndex = 13;
-            // 
-            // inptRotX
-            // 
-            this.inptRotX.Location = new System.Drawing.Point(148, 307);
-            this.inptRotX.Name = "inptRotX";
-            this.inptRotX.Size = new System.Drawing.Size(120, 22);
-            this.inptRotX.TabIndex = 14;
+            this.posx.AutoSize = true;
+            this.posx.Location = new System.Drawing.Point(17, 242);
+            this.posx.Name = "posx";
+            this.posx.Size = new System.Drawing.Size(68, 16);
+            this.posx.TabIndex = 10;
+            this.posx.Text = "Posicion x";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 307);
+            this.label4.Location = new System.Drawing.Point(12, 328);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 16);
+            this.label4.Size = new System.Drawing.Size(71, 16);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Rotation";
+            this.label4.Text = "Posicion Y";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 410);
+            this.label5.Location = new System.Drawing.Point(14, 419);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 16);
+            this.label5.Size = new System.Drawing.Size(70, 16);
             this.label5.TabIndex = 16;
-            this.label5.Text = "Scale";
+            this.label5.Text = "Posicion Z";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // inptRotY
+            // label6
             // 
-            this.inptRotY.Location = new System.Drawing.Point(148, 336);
-            this.inptRotY.Name = "inptRotY";
-            this.inptRotY.Size = new System.Drawing.Size(120, 22);
-            this.inptRotY.TabIndex = 17;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(14, 185);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 16);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Operation";
             // 
-            // inptRotZ
+            // cmbxOperation
             // 
-            this.inptRotZ.Location = new System.Drawing.Point(148, 365);
-            this.inptRotZ.Name = "inptRotZ";
-            this.inptRotZ.Size = new System.Drawing.Size(120, 22);
-            this.inptRotZ.TabIndex = 18;
+            this.cmbxOperation.FormattingEnabled = true;
+            this.cmbxOperation.Items.AddRange(new object[] {
+            "Traslate",
+            "Rotate",
+            "Scale"});
+            this.cmbxOperation.Location = new System.Drawing.Point(131, 182);
+            this.cmbxOperation.Name = "cmbxOperation";
+            this.cmbxOperation.Size = new System.Drawing.Size(137, 24);
+            this.cmbxOperation.TabIndex = 23;
             // 
-            // inptScalX
+            // XSlider
             // 
-            this.inptScalX.Location = new System.Drawing.Point(148, 410);
-            this.inptScalX.Name = "inptScalX";
-            this.inptScalX.Size = new System.Drawing.Size(120, 22);
-            this.inptScalX.TabIndex = 19;
+            this.XSlider.Location = new System.Drawing.Point(39, 269);
+            this.XSlider.Minimum = -10;
+            this.XSlider.Name = "XSlider";
+            this.XSlider.Size = new System.Drawing.Size(273, 56);
+            this.XSlider.TabIndex = 24;
+            this.XSlider.Scroll += new System.EventHandler(this.XSlider_Scroll);
             // 
-            // inptScalY
+            // YSlider
             // 
-            this.inptScalY.Location = new System.Drawing.Point(148, 439);
-            this.inptScalY.Name = "inptScalY";
-            this.inptScalY.Size = new System.Drawing.Size(120, 22);
-            this.inptScalY.TabIndex = 20;
+            this.YSlider.Location = new System.Drawing.Point(39, 360);
+            this.YSlider.Minimum = -10;
+            this.YSlider.Name = "YSlider";
+            this.YSlider.Size = new System.Drawing.Size(273, 56);
+            this.YSlider.TabIndex = 25;
             // 
-            // inptScalZ
+            // ZSlider
             // 
-            this.inptScalZ.Location = new System.Drawing.Point(148, 468);
-            this.inptScalZ.Name = "inptScalZ";
-            this.inptScalZ.Size = new System.Drawing.Size(120, 22);
-            this.inptScalZ.TabIndex = 21;
+            this.ZSlider.Location = new System.Drawing.Point(39, 451);
+            this.ZSlider.Minimum = -10;
+            this.ZSlider.Name = "ZSlider";
+            this.ZSlider.Size = new System.Drawing.Size(273, 56);
+            this.ZSlider.TabIndex = 26;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(356, 580);
-            this.Controls.Add(this.inptScalZ);
-            this.Controls.Add(this.inptScalY);
-            this.Controls.Add(this.inptScalX);
-            this.Controls.Add(this.inptRotZ);
-            this.Controls.Add(this.inptRotY);
+            this.Controls.Add(this.ZSlider);
+            this.Controls.Add(this.YSlider);
+            this.Controls.Add(this.XSlider);
+            this.Controls.Add(this.cmbxOperation);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.inptRotX);
-            this.Controls.Add(this.inptPosZ);
-            this.Controls.Add(this.inptPosY);
-            this.Controls.Add(this.inptPosX);
-            this.Controls.Add(this.Position);
+            this.Controls.Add(this.posx);
             this.Controls.Add(this.cmbxFaces);
             this.Controls.Add(this.cmbxParts);
             this.Controls.Add(this.label3);
@@ -277,15 +242,9 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.inptPosX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptPosY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptPosZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptRotX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptRotY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptRotZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptScalX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptScalY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inptScalZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.XSlider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YSlider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ZSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,17 +263,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbxParts;
         private System.Windows.Forms.ComboBox cmbxFaces;
-        private System.Windows.Forms.Label Position;
-        private System.Windows.Forms.NumericUpDown inptPosX;
-        private System.Windows.Forms.NumericUpDown inptPosY;
-        private System.Windows.Forms.NumericUpDown inptPosZ;
-        private System.Windows.Forms.NumericUpDown inptRotX;
+        private System.Windows.Forms.Label posx;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown inptRotY;
-        private System.Windows.Forms.NumericUpDown inptRotZ;
-        private System.Windows.Forms.NumericUpDown inptScalX;
-        private System.Windows.Forms.NumericUpDown inptScalY;
-        private System.Windows.Forms.NumericUpDown inptScalZ;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbxOperation;
+        private System.Windows.Forms.TrackBar XSlider;
+        private System.Windows.Forms.TrackBar YSlider;
+        private System.Windows.Forms.TrackBar ZSlider;
     }
 }
