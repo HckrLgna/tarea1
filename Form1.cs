@@ -17,6 +17,7 @@ namespace Proyecto1_01
     public partial class Form1 : Form
     {
         Game juego;
+        float trasladarx;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Proyecto1_01
         private void Form1_Load(object sender, EventArgs e)
         {
             juego = new Game(800, 600, "Demo OpenTK");
+            this.trasladarx = 0;
              
         }
 
@@ -44,8 +46,9 @@ namespace Proyecto1_01
                 Console.WriteLine("Nombre del archivo sin extensión: " + fileNameWithoutExtension);
                 juego.JsonToObj(fileNameWithoutExtension, filePath);
                 addItemsCbx();
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -125,8 +128,25 @@ namespace Proyecto1_01
         private void inptPosX_ValueChanged(object sender, EventArgs e)
         {
             float posx = (float)inptPosX.Value;
-            
-            juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).traslate(posx,0,0);
+            float ejex = (this.trasladarx < posx) ? 1.0f : -1.0f;
+            if(cmbxObjets.SelectedIndex == -1)
+            {
+                juego.stage.Traslate(posx, 0, 0);
+            }
+            else if(cmbxFaces.SelectedIndex == -1)
+            {
+                juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetPart(cmbxParts.SelectedItem.ToString()).Traslate(posx, 0, 0);
+            }
+            else
+            {
+                if (cmbxParts.SelectedIndex != -1)
+                {
+                    juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetPart(cmbxParts.SelectedItem.ToString()).GetFace(cmbxFaces.SelectedItem.ToString()).Traslate(posx, 0, 0);
+                }
+                juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).Traslate(posx, 0, 0);
+
+            }
+
         }
     }
 }

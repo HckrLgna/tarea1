@@ -67,18 +67,26 @@ namespace Proyecto1_01
         {
             return list_coordinates;
         }
-        public void displace(float x, float y,  float z)
+        public void Traslate(float x, float y,  float z)
         {
-            foreach (var item in list_coordinates)
+            foreach (var item in list_coordinates.Values)
             {
-                item.Value.acumular(x, y, z);
+                item.acumular(x, y, z);
             }
         }
-        public void reduce(float x, float y, float z)
+        public void Rotate(float x, float y, float z)
         {
-            foreach (var item in list_coordinates)
+                center.acumular(x, y, z);
+        }
+        public void Escalate(float x, float y, float z)
+        {
+            if (x <= 0) x = 1;
+            if (y <= 0) y = 1;
+            if (z <= 0) z = 1;
+            this.center.multiplicar(x,y,z);
+            foreach (var item in list_coordinates.Values)
             {
-                item.Value.multiplicar(x, y, z);
+                item.multiplicar(x, y, z);
             }
         }
     }

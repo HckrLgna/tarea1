@@ -47,5 +47,26 @@ namespace Proyecto1_01
             }
             
         }
+        public void Rotate(float x, float y, float z)
+        {
+            foreach (var item in objects.Values)
+            {
+                item.Rotate(x,y, z);
+            }
+        }
+        public void Traslate(float x, float y, float z)
+        {
+            foreach (var item in objects.Values)
+            {
+                item.Traslate(x,y,z);
+            }
+        }
+        public void Escalate(float x, float y, float z)
+        {
+            foreach (var item in objects.Values)
+            {
+                item.Escalate(x,y,z);
+            }
+        }
     }
 }

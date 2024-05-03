@@ -59,12 +59,26 @@ namespace Proyecto1_01
         {
             list_faces.Remove(name);
         }
-        public void traslate(float x, float y, float z)
+        public void Rotate(float x, float y, float z)
+        {
+            foreach (var item in list_faces.Values)
+            {
+                item.Rotate(x, y, z);
+            }
+        }
+        public void Traslate(float x, float y, float z)
         {
             // Actualiza las coordenadas de los vértices de todas las caras
             foreach (var face in list_faces.Values)
             {
-                face.displace(x, y, z);
+                face.Traslate(x, y, z);
+            }
+        }
+        public void Escalate(float x, float y, float z)
+        {
+            foreach (var item in list_faces.Values)
+            {
+                item.Escalate(x, y, z);
             }
         }
     }

@@ -57,20 +57,30 @@ namespace Proyecto1_01
                 item.Value.draw(center);
             }
         }
-        public void traslate(float x,float y, float z)
+        public void Traslate(float x,float y, float z)
         {
-            Console.WriteLine(center.ToString()  );        
-            if (x < center.x && x>0)
-                x = x * -1;
-            foreach (var item in list_parts)
+            
+            foreach (var item in list_parts.Values)
             {
-                item.Value.traslate(x,y,z);
+                item.Traslate(x,y,z);
             }
-            this.setCenter(new Coordinate(x, y, z));
 
         }
+        public void Rotate(float x, float y,float z)
+        {
+            foreach (var item in list_parts.Values)
+            {
+                item.Rotate(x, y, z);
+            }
+        }
 
-
+        public void Escalate(float x, float y, float z)
+        {
+            foreach (var item in list_parts.Values)
+            {
+                item.Escalate(x, y, z);
+            }
+        }
 
     }
 }

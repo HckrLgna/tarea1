@@ -35,7 +35,7 @@ namespace Proyecto1
             GL.ClearColor(Color4.Beige);
             
             stage = new Stage();
-            
+            //stage = Serializer.SaveJsonToObj<Stage>("Extras/scenary.json");
         }
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnUnload(EventArgs e)

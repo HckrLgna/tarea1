@@ -26,7 +26,7 @@ namespace Proyecto1_01.Utils
         public static T SaveJsonToObj<T>(string path)
         {
             string filePath = File.ReadAllText(path);
-            Console.WriteLine(filePath);
+             
             return JsonConvert.DeserializeObject<T>(filePath);
         }
     }
