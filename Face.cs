@@ -67,7 +67,7 @@ namespace Proyecto1_01
         {
             return list_coordinates;
         }
-        public void displace(int x, int y,  int z)
+        public void displace(float x, float y,  float z)
         {
             foreach (var item in list_coordinates)
             {

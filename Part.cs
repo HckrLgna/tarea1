@@ -27,6 +27,13 @@ namespace Proyecto1_01
             this.list_faces = new Dictionary<string, Face>();
             this.center = new Coordinate();
         }
+        public Dictionary<string, Face> GetListFaces()
+        {
+            return this.list_faces;
+        }
+        public Face GetFace(string key) {
+            return this.list_faces[key];
+        }
         public void setCenter(Coordinate newCenter)
         {
             this.center = newCenter;
@@ -43,6 +50,7 @@ namespace Proyecto1_01
                 item.Value.Draw(center);
             }
         }
+         
         public void addFace(string name, Face face)
         {
             list_faces.Add(name, face);
@@ -50,6 +58,14 @@ namespace Proyecto1_01
         public void removeFace(string name)
         {
             list_faces.Remove(name);
+        }
+        public void traslate(float x, float y, float z)
+        {
+            // Actualiza las coordenadas de los vértices de todas las caras
+            foreach (var face in list_faces.Values)
+            {
+                face.displace(x, y, z);
+            }
         }
     }
 }

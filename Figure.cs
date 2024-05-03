@@ -28,6 +28,14 @@ namespace Proyecto1_01
             this.list_parts = list_parts;
              
         }
+        public Dictionary<string, Part> GetListParts()
+        {
+            return this.list_parts;
+        }
+        public Part GetPart(string name)
+        {
+            return list_parts[name];
+        }
         public void setFigure(Figure figure)
         {
             this.center = figure.center;
@@ -49,26 +57,20 @@ namespace Proyecto1_01
                 item.Value.draw(center);
             }
         }
-        public void addPart(string name, Part part)
+        public void traslate(float x,float y, float z)
         {
-            list_parts.Add(name, part);
+            Console.WriteLine(center.ToString()  );        
+            if (x < center.x && x>0)
+                x = x * -1;
+            foreach (var item in list_parts)
+            {
+                item.Value.traslate(x,y,z);
+            }
+            this.setCenter(new Coordinate(x, y, z));
+
         }
-        public void removePart(string name)
-        {
-            list_parts.Remove(name);
-        }
-        public void saveToFile(string path)
-        {
-            string jsonOutput = JsonConvert.SerializeObject(this);
-            File.WriteAllText(path, jsonOutput);
-     
-        }
-        public static Figure loadFromJson(string path)
-        {
-            string filePath = File.ReadAllText(path);
-            Console.WriteLine(filePath);
-            return JsonConvert.DeserializeObject<Figure>(filePath);
-        }
-        
+
+
+
     }
 }

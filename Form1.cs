@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,7 +17,6 @@ namespace Proyecto1_01
     public partial class Form1 : Form
     {
         Game juego;
-        int indexComboBoxSelected;
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace Proyecto1_01
         private void Form1_Load(object sender, EventArgs e)
         {
             juego = new Game(800, 600, "Demo OpenTK");
-            indexComboBoxSelected = 0;
+             
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace Proyecto1_01
                 }
                 Console.WriteLine("Nombre del archivo sin extensión: " + fileNameWithoutExtension);
                 juego.JsonToObj(fileNameWithoutExtension, filePath);
-                comboBox1.Items.Add(fileNameWithoutExtension);
+                addItemsCbx();
             }
             catch(Exception ex)
             {
@@ -67,15 +67,11 @@ namespace Proyecto1_01
                 filePath = saveFileDialog1.FileName;
             }
             Console.WriteLine("Ruta del archivo: " + filePath);
-            Console.WriteLine(indexComboBoxSelected);
-            name = comboBox1.SelectedItem.ToString();
-            juego.objToJson(name , filePath);
+            //name = comboBox1.SelectedItem.ToString();
+            juego.objToJson(filePath);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
+      
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -89,7 +85,48 @@ namespace Proyecto1_01
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cmbxParts.SelectedItem = null;
+            cmbxParts.Items.Clear();
+            cmbxFaces.SelectedItem = null;
+            cmbxFaces.Items.Clear();
+            foreach (var parts in juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetListParts())
+            {
+                cmbxParts.Items.Add(parts.Key);
+                
+            }
+        }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void addItemsCbx()
+        {
+            foreach (var obj in juego.stage.objects)
+            {
+                cmbxObjets.Items.Add(obj.Key);
+            }
+            
+        }
+
+        private void cmbxParts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbxFaces.SelectedItem = null;
+            cmbxFaces.Items.Clear();
+            //cmbxParts.SelectedItem = null;
+            //cmbxParts.Items.Clear();
+
+            foreach (var faces in juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).GetPart(cmbxParts.SelectedItem.ToString()).GetListFaces())
+            {
+                cmbxFaces.Items.Add(faces.Key);
+            }
+        }
+
+        private void inptPosX_ValueChanged(object sender, EventArgs e)
+        {
+            float posx = (float)inptPosX.Value;
+            
+            juego.stage.getFigure(cmbxObjets.SelectedItem.ToString()).traslate(posx,0,0);
         }
     }
 }

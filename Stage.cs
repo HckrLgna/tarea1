@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,11 @@ namespace Proyecto1_01
     public class Stage
     {
         public Dictionary<string, Figure> objects;
+        public Coordinate center;
         public Stage()
         {
             objects = new Dictionary<string, Figure>();
+            center = new Coordinate();
         }
         public void draw()
         {
@@ -19,6 +22,11 @@ namespace Proyecto1_01
             {
                 figure.draw();
             }
+        }
+        public void setStage(Stage stage)
+        {
+            this.objects = stage.objects;
+            this.center = stage.center;
         }
         public void addFigure(string name, Figure figure)
         {
