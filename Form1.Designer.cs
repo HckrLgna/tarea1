@@ -129,6 +129,8 @@
             // cmbxParts
             // 
             this.cmbxParts.FormattingEnabled = true;
+            this.cmbxParts.Items.AddRange(new object[] {
+            "Objeto"});
             this.cmbxParts.Location = new System.Drawing.Point(131, 88);
             this.cmbxParts.Name = "cmbxParts";
             this.cmbxParts.Size = new System.Drawing.Size(137, 24);
@@ -138,10 +140,13 @@
             // cmbxFaces
             // 
             this.cmbxFaces.FormattingEnabled = true;
+            this.cmbxFaces.Items.AddRange(new object[] {
+            "Parte"});
             this.cmbxFaces.Location = new System.Drawing.Point(131, 132);
             this.cmbxFaces.Name = "cmbxFaces";
             this.cmbxFaces.Size = new System.Drawing.Size(137, 24);
             this.cmbxFaces.TabIndex = 9;
+            this.cmbxFaces.SelectedIndexChanged += new System.EventHandler(this.cmbxFaces_SelectedIndexChanged);
             // 
             // posx
             // 
@@ -186,16 +191,18 @@
             this.cmbxOperation.Items.AddRange(new object[] {
             "Traslate",
             "Rotate",
-            "Scale"});
+            "Escale"});
             this.cmbxOperation.Location = new System.Drawing.Point(131, 182);
             this.cmbxOperation.Name = "cmbxOperation";
             this.cmbxOperation.Size = new System.Drawing.Size(137, 24);
             this.cmbxOperation.TabIndex = 23;
+            this.cmbxOperation.SelectedIndexChanged += new System.EventHandler(this.cmbxOperation_SelectedIndexChanged);
             // 
             // XSlider
             // 
             this.XSlider.Location = new System.Drawing.Point(39, 269);
-            this.XSlider.Minimum = -10;
+            this.XSlider.Maximum = 100;
+            this.XSlider.Minimum = -100;
             this.XSlider.Name = "XSlider";
             this.XSlider.Size = new System.Drawing.Size(273, 56);
             this.XSlider.TabIndex = 24;
@@ -204,18 +211,22 @@
             // YSlider
             // 
             this.YSlider.Location = new System.Drawing.Point(39, 360);
-            this.YSlider.Minimum = -10;
+            this.YSlider.Maximum = 100;
+            this.YSlider.Minimum = -100;
             this.YSlider.Name = "YSlider";
             this.YSlider.Size = new System.Drawing.Size(273, 56);
             this.YSlider.TabIndex = 25;
+            this.YSlider.Scroll += new System.EventHandler(this.YSlider_Scroll);
             // 
             // ZSlider
             // 
             this.ZSlider.Location = new System.Drawing.Point(39, 451);
-            this.ZSlider.Minimum = -10;
+            this.ZSlider.Maximum = 100;
+            this.ZSlider.Minimum = -100;
             this.ZSlider.Name = "ZSlider";
             this.ZSlider.Size = new System.Drawing.Size(273, 56);
             this.ZSlider.TabIndex = 26;
+            this.ZSlider.Scroll += new System.EventHandler(this.ZSlider_Scroll);
             // 
             // Form1
             // 

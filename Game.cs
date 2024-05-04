@@ -35,6 +35,7 @@ namespace Proyecto1
             GL.ClearColor(Color4.Beige);
             
             stage = new Stage();
+            stage.addFigure("Speaker1",new Figure(new Coordinate(), Speaker.getParts()));
             //stage = Serializer.SaveJsonToObj<Stage>("Extras/scenary.json");
         }
         //-----------------------------------------------------------------------------------------------------------------

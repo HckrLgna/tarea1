@@ -12,10 +12,10 @@ namespace Proyecto1_01.Extras
     {
         public static Dictionary<string, Part> getParts()
         {
-            float valorX = 5;
-            float valorY = 10;
-            float valorZ = 8;
-            int distY = 5;
+            float valorX = 4.4f;
+            float valorY = 8.8f;
+            float valorZ = 6.1f;
+            float distY = 5;
             Dictionary<string, Part> parts = new Dictionary<string, Part>();
             Dictionary<string, Face> list_faces_base = new Dictionary<string, Face>();
 
@@ -55,10 +55,10 @@ namespace Proyecto1_01.Extras
             bottom_list_points.Add("right-button", new Coordinate(+valorX, -valorY - distY, +valorZ));
             bottom_list_points.Add("left-button", new Coordinate(-valorX, -valorY - distY, +valorZ));
 
-            valorX = 2;
-            valorY = 2;
-            valorZ = 9;
-            distY = 6;
+            valorX = 2.0f;
+            valorY = 2.0f;
+            valorZ = 9.0f;
+            distY = 6.0f;
             Dictionary<string, Coordinate> woofer_list_points = new Dictionary<string, Coordinate>();
 
             woofer_list_points.Add("left-top", new Coordinate(-valorX, +valorY, +valorZ));
@@ -66,10 +66,10 @@ namespace Proyecto1_01.Extras
             woofer_list_points.Add("right-button", new Coordinate(+valorX, -valorY, +valorZ));
             woofer_list_points.Add("left-button", new Coordinate(-valorX, -valorY, +valorZ));
 
-            valorX = 3.5f;
-            valorY = 3.5f;
-            valorZ = 9;
-            distY = 8;
+            valorX = 3.50f;
+            valorY = 3.50f;
+            valorZ = 9.0f;
+            distY = 8.0f;
             Dictionary<string, Coordinate> woofer_big_list_points = new Dictionary<string, Coordinate>();
 
             woofer_big_list_points.Add("left-top", new Coordinate(-valorX, +valorY-distY, +valorZ));
