@@ -29,20 +29,9 @@ namespace Proyecto1_01
             this.center = center;
             Transformations = new Transformation();
         }
-        public Face(Dictionary<string, Coordinate> list_coordinates, Coordinate center)
-        {
-            this.list_coordinates = list_coordinates;
-            this.center = center;
-            Transformations = new Transformation();
-
-        }
-
-       
         public void Draw()
         {
-                
             PrimitiveType primitiveType = PrimitiveType.Quads;
-
             GL.Begin(primitiveType);
             GL.Color3(color); //gray
             foreach (var item in list_coordinates)
@@ -50,7 +39,6 @@ namespace Proyecto1_01
                 Coordinate vertexToRender = (item.Value) * Transformations.TransformationMatrix;
                 GL.Vertex3(vertexToRender);
             }
-
             GL.End();
             GL.Flush();
         }
@@ -80,7 +68,6 @@ namespace Proyecto1_01
             angleX = MathHelper.DegreesToRadians(angleX);
             angleY = MathHelper.DegreesToRadians(angleY);
             angleZ = MathHelper.DegreesToRadians(angleZ);
-
             Transformations.Rotation *= Matrix4.CreateRotationX(angleX) * Matrix4.CreateRotationY(angleY) *
                         Matrix4.CreateRotationZ(angleZ);
 

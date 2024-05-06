@@ -41,10 +41,8 @@ namespace Proyecto1_01
                     filePath = openFileDialog.FileName;
                     fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
                 }
-                Console.WriteLine("Nombre del archivo sin extensión: " + fileNameWithoutExtension);
                 juego.JsonToObj(fileNameWithoutExtension, filePath);
                 addItemsCbx();
-
             }
             catch (Exception ex)
             {
@@ -57,7 +55,6 @@ namespace Proyecto1_01
         private void button2_Click(object sender, EventArgs e)
         {
             string filePath="";
-            string name = "Object";
             saveFileDialog1.Filter = "Archivos JSON (*.json)|*.json"; // Filtro para mostrar solo archivos JSON
             saveFileDialog1.Title = "Guardar archivo JSON"; // Título del cuadro de diálogo
             saveFileDialog1.FileName = "archivo"; // Nombre predeterminado del archivo
@@ -67,9 +64,10 @@ namespace Proyecto1_01
             {
                 filePath = saveFileDialog1.FileName;
             }
+
             Console.WriteLine("Ruta del archivo: " + filePath);
-            //name = comboBox1.SelectedItem.ToString();
             juego.objToJson(filePath);
+
         }
 
       
@@ -179,9 +177,9 @@ namespace Proyecto1_01
                 string objectString = cmbxObjets.SelectedItem!=null ? cmbxObjets.SelectedItem.ToString() : "Escenario";
                 string partString = cmbxParts.SelectedItem!=null ? cmbxParts.SelectedItem.ToString(): "Objeto";
                 string faceString = cmbxFaces.SelectedItem!=null ? cmbxFaces.SelectedItem.ToString(): "Parte";
-                float xSlider = XSlider.Value / 10f;
-                float ySlider = YSlider.Value / 10f;
-                float zSlider = ZSlider.Value / 10f;
+                float xSlider = XSlider.Value / 100f;
+                float ySlider = YSlider.Value / 100f;
+                float zSlider = ZSlider.Value / 100f;
                 if (mode == "Rotate")
                 {
                     if (objectString == "Escenario")

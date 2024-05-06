@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Drawing.Drawing2D;
 
 namespace Proyecto1_01.Utils
 {
@@ -14,7 +15,11 @@ namespace Proyecto1_01.Utils
         {
             try
             {
-                string jsonOutput = JsonConvert.SerializeObject(obj);
+                var settings = new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                };
+                string jsonOutput = JsonConvert.SerializeObject(obj, settings);
                 File.WriteAllText(path, jsonOutput);
             }
             catch (Exception ex)
@@ -25,8 +30,9 @@ namespace Proyecto1_01.Utils
         }
         public static T SaveJsonToObj<T>(string path)
         {
+
             string filePath = File.ReadAllText(path);
-             
+            
             return JsonConvert.DeserializeObject<T>(filePath);
         }
     }

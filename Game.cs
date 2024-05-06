@@ -35,8 +35,11 @@ namespace Proyecto1
             GL.ClearColor(Color4.Beige);
             
             stage = new Stage();
-            stage.addFigure("Speaker1",new Figure(new Coordinate(), Speaker.getParts()));
-            //stage = Serializer.SaveJsonToObj<Stage>("Extras/scenary.json");
+            stage.addFigure("Speaker",new Figure(new Coordinate(-20,0,0), Speaker.getParts() ));
+            stage.addFigure("Vase", new Figure(new Coordinate(+10,10,0), Vase.getParts()));
+
+            stage = Serializer.SaveJsonToObj<Stage>("Extras/scenary.json");
+
         }
         //-----------------------------------------------------------------------------------------------------------------
         protected override void OnUnload(EventArgs e)
@@ -76,6 +79,7 @@ namespace Proyecto1
 
         public void objToJson(string path)
         {
+            Console.WriteLine("obj to json stage");
             Serializer.SaveObjToJson(stage, path);
         }
         public void JsonToObj(string name, string path)

@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using Newtonsoft.Json;
+using OpenTK;
 using Proyecto1;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace Proyecto1_01
 {
     public class Transformation
     {
+        
         public Matrix4 Rotation { get; set; }
         public Matrix4 Scaling { get; set; }
         public Matrix4 Traslation { get; set; }

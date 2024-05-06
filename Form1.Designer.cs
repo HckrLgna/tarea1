@@ -201,8 +201,8 @@
             // XSlider
             // 
             this.XSlider.Location = new System.Drawing.Point(39, 269);
-            this.XSlider.Maximum = 100;
-            this.XSlider.Minimum = -100;
+            this.XSlider.Maximum = 1000;
+            this.XSlider.Minimum = -1000;
             this.XSlider.Name = "XSlider";
             this.XSlider.Size = new System.Drawing.Size(273, 56);
             this.XSlider.TabIndex = 24;
@@ -211,8 +211,8 @@
             // YSlider
             // 
             this.YSlider.Location = new System.Drawing.Point(39, 360);
-            this.YSlider.Maximum = 100;
-            this.YSlider.Minimum = -100;
+            this.YSlider.Maximum = 1000;
+            this.YSlider.Minimum = -1000;
             this.YSlider.Name = "YSlider";
             this.YSlider.Size = new System.Drawing.Size(273, 56);
             this.YSlider.TabIndex = 25;
@@ -221,8 +221,8 @@
             // ZSlider
             // 
             this.ZSlider.Location = new System.Drawing.Point(39, 451);
-            this.ZSlider.Maximum = 100;
-            this.ZSlider.Minimum = -100;
+            this.ZSlider.Maximum = 1000;
+            this.ZSlider.Minimum = -1000;
             this.ZSlider.Name = "ZSlider";
             this.ZSlider.Size = new System.Drawing.Size(273, 56);
             this.ZSlider.TabIndex = 26;

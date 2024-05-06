@@ -19,11 +19,6 @@ namespace Proyecto1_01
             transformations = new Transformation(center);
             SetCenter(center);
         }
-        public Stage(Coordinate center)
-        {
-            objects= new Dictionary<string, Figure>();
-            Transformation transformations = new Transformation(center);
-        }
         public Stage()
         {
             objects = new Dictionary<string, Figure>();
