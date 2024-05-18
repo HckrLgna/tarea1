@@ -47,6 +47,8 @@
             this.XSlider = new System.Windows.Forms.TrackBar();
             this.YSlider = new System.Windows.Forms.TrackBar();
             this.ZSlider = new System.Windows.Forms.TrackBar();
+            this.btnPlay = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.XSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.YSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ZSlider)).BeginInit();
@@ -59,7 +61,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(23, 513);
+            this.button1.Location = new System.Drawing.Point(23, 567);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 35);
             this.button1.TabIndex = 0;
@@ -69,7 +71,7 @@
             // 
             // generarJson
             // 
-            this.generarJson.Location = new System.Drawing.Point(214, 513);
+            this.generarJson.Location = new System.Drawing.Point(214, 567);
             this.generarJson.Name = "generarJson";
             this.generarJson.Size = new System.Drawing.Size(98, 34);
             this.generarJson.TabIndex = 1;
@@ -101,7 +103,7 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(131, 525);
+            this.panel1.Location = new System.Drawing.Point(131, 579);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(67, 23);
             this.panel1.TabIndex = 5;
@@ -228,11 +230,33 @@
             this.ZSlider.TabIndex = 26;
             this.ZSlider.Scroll += new System.EventHandler(this.ZSlider_Scroll);
             // 
+            // btnPlay
+            // 
+            this.btnPlay.Location = new System.Drawing.Point(104, 513);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(75, 23);
+            this.btnPlay.TabIndex = 27;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 516);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 16);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Animation";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 580);
+            this.ClientSize = new System.Drawing.Size(356, 628);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.ZSlider);
             this.Controls.Add(this.YSlider);
             this.Controls.Add(this.XSlider);
@@ -282,5 +306,7 @@
         private System.Windows.Forms.TrackBar XSlider;
         private System.Windows.Forms.TrackBar YSlider;
         private System.Windows.Forms.TrackBar ZSlider;
+        private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.Label label7;
     }
 }

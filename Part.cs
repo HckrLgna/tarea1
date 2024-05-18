@@ -11,21 +11,28 @@ namespace Proyecto1_01
 {
     public class Part
     {
-        [JsonIgnore]
+        
         public Dictionary<string, Face> list_faces;
+        [JsonIgnore]
         public Transformation Transformations;
 
         public Part(Dictionary<string, Face>list_faces, Coordinate origin)
         {
             this.list_faces = list_faces;
             this.Transformations = new Transformation(origin);
-
+            SetCenter(origin);
         }
         public Part()
         {
             this.list_faces = new Dictionary<string, Face>();
             this.Transformations = new Transformation();
         }
+        public Part(Dictionary<string, Face> list_faces)
+        {
+            this.list_faces = list_faces;
+            Transformations = new Transformation();
+        }
+
         public Dictionary<string, Face> GetListFaces()
         {
             return this.list_faces;

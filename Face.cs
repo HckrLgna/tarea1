@@ -15,9 +15,10 @@ namespace Proyecto1_01
     public class Face
     {
         public Dictionary<string, Coordinate> list_coordinates;
+        [JsonIgnore]
         public Transformation Transformations;
         public Color color;
-        [JsonIgnore]
+        
         public Coordinate center { get; set; }
         public Face()
         {
@@ -92,10 +93,10 @@ namespace Proyecto1_01
                        Matrix4.CreateRotationZ(angleZ);
 
             Transformations.SetTransformation(self);
+
         }
         public void SetTraslation(float x, float y, float z)
         {
-            // Transformations.Traslation = new Vertex(x, y, z);
             Transformations.Traslation = Matrix4.CreateTranslation(x, y, z);
             Transformations.SetTransformation();
         }

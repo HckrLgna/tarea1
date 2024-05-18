@@ -1,4 +1,6 @@
 ﻿using Proyecto1;
+using Proyecto1_01.Animation;
+using Proyecto1_01.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,17 +18,33 @@ namespace Proyecto1_01
 {
     public partial class Form1 : Form
     {
-        Game juego;
-         
+        public Game juego;
+        AnimationController controller;
+        int xTras;
+        int yTras;
+        int zTras;
+        int xRot;
+        int yRot;
+        int zRot;
+        int xScal;
+        int yScal;
+        int zScal;
+
         public Form1()
         {
             InitializeComponent();
         }
-
+        public Game GetGame()
+        {
+            return juego;
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             juego = new Game(800, 600, "Demo OpenTK");
-
+            controller = new AnimationController();
+            xTras = yTras = zTras = 0;
+            xRot = yRot = zRot = 0;
+            xScal = yScal = zScal = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -44,7 +62,7 @@ namespace Proyecto1_01
                     filePath = openFileDialog.FileName;
                     fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
                 }
-                juego.JsonToObj(fileNameWithoutExtension, filePath);
+                juego.JsonToObj(filePath);
             }
             catch (Exception ex)
             {
@@ -59,7 +77,7 @@ namespace Proyecto1_01
             string filePath="";
             saveFileDialog1.Filter = "Archivos JSON (*.json)|*.json"; // Filtro para mostrar solo archivos JSON
             saveFileDialog1.Title = "Guardar archivo JSON"; // Título del cuadro de diálogo
-            saveFileDialog1.FileName = "archivo"; // Nombre predeterminado del archivo
+               saveFileDialog1.FileName = "archivo"; // Nombre predeterminado del archivo
             saveFileDialog1.DefaultExt = ".json"; // Extensión predeterminada
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -69,7 +87,7 @@ namespace Proyecto1_01
 
             Console.WriteLine("Ruta del archivo: " + filePath);
             juego.objToJson(filePath);
-
+            Serializer.SaveObjToJson<AnimationController>(controller, filePath);
         }
 
       
@@ -155,7 +173,7 @@ namespace Proyecto1_01
             {
                 cmbxFaces.Enabled=false;
             }
-            cleanCursor();
+            //cleanCursor();
         }
 
 
@@ -175,6 +193,7 @@ namespace Proyecto1_01
         }
         private void SliderHandler()
         {
+            
             if (XSlider != null && YSlider != null && ZSlider != null)
             {
                 string mode = (string)cmbxOperation.SelectedItem;
@@ -187,6 +206,7 @@ namespace Proyecto1_01
                 float zSlider = ZSlider.Value / 100f;
                 if (mode == "Rotate")
                 {
+                    xRot=XSlider.Value; yRot=YSlider.Value; zRot=ZSlider.Value;
                     if (objectString == "Escenario")
                     {
                         juego.stage.SetRotation(xSlider, ySlider,
@@ -224,6 +244,7 @@ namespace Proyecto1_01
 
                 if (mode == "Traslate")
                 {
+                    xTras = XSlider.Value; yTras = YSlider.Value; zTras = ZSlider.Value;
                     if (objectString == "Escenario")
                     {
                         juego.stage.SetTraslation(coordinates);
@@ -234,6 +255,7 @@ namespace Proyecto1_01
                         if (partString == "Objeto")
                         {
                             objectToProcess.SetTraslation(coordinates);
+                            this.juego.stage.SetFigure(objectString, objectToProcess);
                             return;
                         }
                         else
@@ -248,7 +270,7 @@ namespace Proyecto1_01
                             faceToProcess.SetTraslation(coordinates);
                         }
 
-                        
+                        //this.juego.stage.SetFigure(objectString, objectToProcess);
                     }
 
                     return;
@@ -256,6 +278,7 @@ namespace Proyecto1_01
 
                 if (mode == "Escale")
                 {
+                    xScal = XSlider.Value; yScal = YSlider.Value; zScal = ZSlider.Value;
                     Console.WriteLine("escale");
                     if (objectString == "Escenario")
                     {
@@ -300,13 +323,55 @@ namespace Proyecto1_01
 
         private void cmbxFaces_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cleanCursor();
+            //cleanCursor();
 
         }
 
         private void cmbxOperation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cleanCursor();
+            switch (cmbxOperation.SelectedItem.ToString())
+            {
+                case "Traslate":
+                    updateCursorTraslate();
+                break;
+                case "Rotate":
+                    updateCursorRotate();
+                break;
+                case "Scale":
+                    updateCursorScale();
+                break;
+
+            }
+             
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            controller.SetStage(this.juego.stage);
+            controller.StartAnimation();
+        }
+        private void updateCursorTraslate()
+        {
+            XSlider.Value = xTras;
+            YSlider.Value = yTras;
+            ZSlider.Value = zTras;
+        }
+        private void updateCursorRotate()
+        {
+            XSlider.Value = xRot;
+            YSlider.Value = yRot;
+            ZSlider.Value = zRot;
+        }
+        private void updateCursorScale()
+        {
+            XSlider.Value = xScal;
+            YSlider.Value = yScal;
+            ZSlider.Value = zScal;
         }
     }
 }

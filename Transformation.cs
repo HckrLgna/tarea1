@@ -11,11 +11,12 @@ namespace Proyecto1_01
 {
     public class Transformation
     {
-        [JsonIgnore]
+        
         public Matrix4 Rotation { get; set; }
         public Matrix4 Scaling { get; set; }
         public Matrix4 Traslation { get; set; }
         public Matrix4 Center { get; set; }
+        [JsonIgnore]
         public Matrix4 TransformationMatrix { get; set; }
 
         public Transformation()

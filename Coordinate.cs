@@ -11,7 +11,6 @@ namespace Proyecto1
 
     public class Coordinate
     {
-        [JsonIgnore]
         public float X { get; set; }
         public float Y { get; set; }
         public float Z { get; set; }
@@ -99,6 +98,12 @@ namespace Proyecto1
         public static Coordinate Vector4ToVertex(Vector4 vector4)
         {
             return new Coordinate(vector4.X, vector4.Y, vector4.Z);
+        }
+        public void acumular(float x, float y, float z)
+        {
+            this.X += x;
+            this.Y += y;
+            this.Z += z;
         }
     }
 }

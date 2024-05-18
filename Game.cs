@@ -36,10 +36,13 @@ namespace Proyecto1
             GL.ClearColor(Color4.Beige);
             
             stage = new Stage(new Coordinate(0f,0f,0f));
-            stage.addFigure("Speaker",new Figure(new Coordinate(-20.0f,0.0f,0.0f), Speaker.getParts() ));
-            stage.addFigure("Vase", new Figure(new Coordinate(+15.0f,50.0f,0.0f), Vase.getParts()));
-
+            stage.addFigure("Speaker1",new Figure(new Coordinate(-17.0f,0.0f,-10.0f), Speaker.getParts() ));
+            stage.addFigure("Vase", new Figure(new Coordinate(+17.0f,-10.0f,+20.0f), Vase.getParts()));
+            stage.addFigure("Ball", new Figure(new Coordinate(-25.0f,-5.0f,+20.0f), Ball.getParts() ));
+            //stage = Serializer.SaveJsonToObj<Stage>("Extras/scenary_changed2.json");
             //stage = Serializer.SaveJsonToObj<Stage>("Extras/scenary.json");
+            stage.addFigure("Televisor", Serializer.SaveJsonToObj<Figure>("Extras/Televisor.json") );
+            
 
         }
         //-----------------------------------------------------------------------------------------------------------------
@@ -83,9 +86,10 @@ namespace Proyecto1
             Console.WriteLine("obj to json stage");
             Serializer.SaveObjToJson(stage, path);
         }
-        public void JsonToObj(string name, string path)
+        public void JsonToObj( string path)
         {
-            stage.setStage(Serializer.SaveJsonToObj<Stage>(path)); 
+            stage.setStage(Serializer.SaveJsonToObj<Stage>(path));
+            //stage.addFigure( Serializer.SaveJsonToObj<Figure>(path));
         }
           
     }

@@ -28,6 +28,7 @@ namespace Proyecto1_01
         {
             this.list_parts = list_parts;
             Transformations = new Transformation(center);
+            SetCenter(center);
         }
         public Dictionary<string, Part> GetListParts()
         {

@@ -17,6 +17,7 @@ namespace Proyecto1_01.Extras
             int valorZ = 5;
             Dictionary<string, Face> list_faces = new Dictionary<string, Face>();
             Dictionary<string, Part> list_parts = new Dictionary<string, Part>();
+
             Dictionary<string, Coordinate> back_list_points = new Dictionary<string, Coordinate>();
             back_list_points.Add("left-top", new Coordinate(-valorX, +valorY, -valorZ));
             back_list_points.Add("right-top", new Coordinate(+valorX, +valorY, -valorZ));
@@ -55,7 +56,7 @@ namespace Proyecto1_01.Extras
             list_faces.Add("right", new Face(right_list_points, Color.Gray, new Coordinate()));
             list_faces.Add("top", new Face(top_list_points, Color.DarkRed, new Coordinate()));
             
-            list_parts.Add("main", new Part(list_faces, new Coordinate()));
+            list_parts.Add("main", new Part(list_faces));
             return list_parts;
         }
 

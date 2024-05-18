@@ -21,6 +21,11 @@ namespace Proyecto1_01
             Transformations = new Transformation(center);
             SetCenter(center);
         }
+        public Stage()
+        {
+            this.objects=new Dictionary<string, Figure>();
+            this.center = new Coordinate();
+        }
         public Stage(Coordinate center)
         {
             objects = new Dictionary<string, Figure>();
@@ -64,6 +69,11 @@ namespace Proyecto1_01
                 return null;
             }
             
+        }
+        public void SetFigure(string name, Figure figure)
+        {
+            Console.Write(name + " " + figure.ToString());
+            objects[name] = figure;
         }
         public void Rotate(float x, float y, float z)
         {
