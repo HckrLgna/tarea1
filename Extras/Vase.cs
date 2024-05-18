@@ -54,7 +54,8 @@ namespace Proyecto1_01.Extras
             list_faces.Add("left", new Face(left_list_points, Color.Gray, new Coordinate()));
             list_faces.Add("right", new Face(right_list_points, Color.Gray, new Coordinate()));
             list_faces.Add("top", new Face(top_list_points, Color.DarkRed, new Coordinate()));
-            list_parts.Add("main", new Part(list_faces));
+            
+            list_parts.Add("main", new Part(list_faces, new Coordinate()));
             return list_parts;
         }
 

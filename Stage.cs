@@ -1,4 +1,5 @@
-﻿using Proyecto1;
+﻿using Newtonsoft.Json;
+using Proyecto1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,19 @@ namespace Proyecto1_01
     {
         public Dictionary<string, Figure> objects;
         public Coordinate center;
+        [JsonIgnore]
         public Transformation Transformations { get; set; }
 
-        public Stage(Dictionary<string, Figure> objects, Coordinate center, Transformation transformations)
+        public Stage(Dictionary<string, Figure> objects, Coordinate center)
         {
             this.objects = objects;
-            transformations = new Transformation(center);
+            Transformations = new Transformation(center);
             SetCenter(center);
         }
-        public Stage()
+        public Stage(Coordinate center)
         {
             objects = new Dictionary<string, Figure>();
-            center = new Coordinate();
-            Transformations = new Transformation();
+            Transformations = new Transformation(center);
         }
         public void SetCenter(Coordinate center)
         {
@@ -43,7 +44,7 @@ namespace Proyecto1_01
         public void setStage(Stage stage)
         {
             this.objects = stage.objects;
-            this.center = stage.center;
+            this.center = stage.center; 
         }
         public void addFigure(string name, Figure figure)
         {

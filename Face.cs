@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
@@ -16,11 +17,13 @@ namespace Proyecto1_01
         public Dictionary<string, Coordinate> list_coordinates;
         public Transformation Transformations;
         public Color color;
+        [JsonIgnore]
         public Coordinate center { get; set; }
         public Face()
         {
             this.list_coordinates = new Dictionary<string, Coordinate>();
             this.color = new Color();
+            this.center = new Coordinate();
             this.Transformations = new Transformation();
         }
         public Face(Dictionary<string, Coordinate> list_points, Color color, Coordinate center) {

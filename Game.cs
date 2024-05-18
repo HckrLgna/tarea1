@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using Newtonsoft.Json;
+using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
@@ -16,8 +17,8 @@ namespace Proyecto1
 {
     public class Game : GameWindow
     {
-       
-        
+
+        [JsonIgnore]
         public Stage stage;
         //-----------------------------------------------------------------------------------------------------------------
         public Game(int width, int height, string title) : base(width, height, GraphicsMode.Default, title) {
@@ -34,11 +35,11 @@ namespace Proyecto1
             base.OnLoad(e);
             GL.ClearColor(Color4.Beige);
             
-            stage = new Stage();
-            stage.addFigure("Speaker",new Figure(new Coordinate(-20,0,0), Speaker.getParts() ));
-            stage.addFigure("Vase", new Figure(new Coordinate(+10,10,0), Vase.getParts()));
+            stage = new Stage(new Coordinate(0f,0f,0f));
+            stage.addFigure("Speaker",new Figure(new Coordinate(-20.0f,0.0f,0.0f), Speaker.getParts() ));
+            stage.addFigure("Vase", new Figure(new Coordinate(+15.0f,50.0f,0.0f), Vase.getParts()));
 
-            stage = Serializer.SaveJsonToObj<Stage>("Extras/scenary.json");
+            //stage = Serializer.SaveJsonToObj<Stage>("Extras/scenary.json");
 
         }
         //-----------------------------------------------------------------------------------------------------------------

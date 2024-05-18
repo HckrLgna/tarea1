@@ -9,6 +9,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
 using OpenTK;
+using System.Xml.Linq;
 
 
 namespace Proyecto1_01
@@ -16,7 +17,7 @@ namespace Proyecto1_01
     public class Figure
     {
         public Dictionary<string, Part> list_parts;
-        public Coordinate center;
+        [JsonIgnore]
         public Transformation Transformations { get; set; }
         public Figure()
         {
@@ -36,21 +37,13 @@ namespace Proyecto1_01
         {
             return list_parts[name];
         }
-        public void setFigure(Figure figure)
-        {
-            this.center = figure.center;
-            this.list_parts = figure.list_parts;
-        }
+        
         public void SetCenter(Coordinate newCenter)
         {
-            Matrix4 CenterMatrix = Matrix4.CreateTranslation(newCenter);
-            Transformations.Center = CenterMatrix;
-
-            this.center = newCenter;
-            foreach(var part in list_parts.Values)
+            foreach (var part in list_parts.Values)
             {
-                part.Transformations.Center = CenterMatrix;
-                part.Transformations.SetTransformation(true);
+                Coordinate formerCenter = Coordinate.Vector4ToVertex(part.GetCenter().Row3);
+                part.SetCenter(newCenter + formerCenter);
             }
 
         }

@@ -26,10 +26,13 @@ namespace Proyecto1_01
         private void Form1_Load(object sender, EventArgs e)
         {
             juego = new Game(800, 600, "Demo OpenTK");
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            addItemsCbx();
+
             try
             {
                 string filePath = "";
@@ -42,7 +45,6 @@ namespace Proyecto1_01
                     fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
                 }
                 juego.JsonToObj(fileNameWithoutExtension, filePath);
-                addItemsCbx();
             }
             catch (Exception ex)
             {
@@ -80,12 +82,12 @@ namespace Proyecto1_01
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             juego.Run(60);
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            if( cmbxObjets.SelectedItem.ToString() != "Escenario")
+            if ( cmbxObjets.SelectedItem.ToString() != "Escenario")
             {
                 cmbxParts.Enabled = true; cmbxParts.SelectedIndex = 0;
                 
@@ -122,6 +124,9 @@ namespace Proyecto1_01
         }
         private void addItemsCbx()
         {
+            Console.WriteLine("uso add itemcbx");
+            cmbxObjets.Items.Clear();
+            cmbxObjets.Items.Add("Escenario");
             foreach (var obj in juego.stage.objects)
             {
                 cmbxObjets.Items.Add(obj.Key);

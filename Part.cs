@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using Newtonsoft.Json;
+using OpenTK;
 using Proyecto1;
 using System;
 using System.Collections.Generic;
@@ -10,27 +11,19 @@ namespace Proyecto1_01
 {
     public class Part
     {
+        [JsonIgnore]
         public Dictionary<string, Face> list_faces;
-        public Coordinate center;
         public Transformation Transformations;
 
         public Part(Dictionary<string, Face>list_faces, Coordinate origin)
         {
             this.list_faces = list_faces;
-            this.center = origin;
             this.Transformations = new Transformation(origin);
 
-        }
-        public Part(Dictionary<string, Face> list_faces)
-        {
-            this.list_faces = list_faces;
-            this.center = new Coordinate();
-            this.Transformations = new Transformation();
         }
         public Part()
         {
             this.list_faces = new Dictionary<string, Face>();
-            this.center = new Coordinate();
             this.Transformations = new Transformation();
         }
         public Dictionary<string, Face> GetListFaces()
@@ -40,14 +33,21 @@ namespace Proyecto1_01
         public Face GetFace(string key) {
             return this.list_faces[key];
         }
-        public void setCenter(Coordinate newCenter)
+        public void SetCenter(Coordinate newCenter)
         {
-            this.center = newCenter;
+            Matrix4 CenterMatrix = Matrix4.CreateTranslation(newCenter);
+            Transformations.Center = CenterMatrix;
+
             foreach (var face in list_faces)
             {
-                face.Value.center = center;
+                face.Value.Transformations.Center = CenterMatrix;
+                face.Value.Transformations.SetTransformation(true);
             }
 
+        }
+        public Matrix4 GetCenter()
+        {
+            return Transformations.Center;
         }
         public void draw()
         {

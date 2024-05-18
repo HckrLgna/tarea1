@@ -17,8 +17,11 @@ namespace Proyecto1_01.Utils
             {
                 var settings = new JsonSerializerSettings
                 {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                };
+                     ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver(),
+                 Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+            };
                 string jsonOutput = JsonConvert.SerializeObject(obj, settings);
                 File.WriteAllText(path, jsonOutput);
             }

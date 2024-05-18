@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using Newtonsoft.Json;
+using OpenTK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Proyecto1
 
     public class Coordinate
     {
+        [JsonIgnore]
         public float X { get; set; }
         public float Y { get; set; }
         public float Z { get; set; }
